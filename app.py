@@ -13,6 +13,9 @@ def main():
         layout="wide"
     )
 
+    # Add creator credit with centered styling
+    st.markdown("<h3 style='text-align: center; color: #FF4B4B;'>Created by SBKD</h3>", unsafe_allow_html=True)
+
     st.title("Cryptocurrency Trend Analyzer 📈")
     st.markdown("""
     Upload a cryptocurrency graph image to analyze trends across different timeframes.
@@ -34,23 +37,23 @@ def main():
                 # Convert PIL Image to numpy array
                 image_array = np.array(image)
                 processed_image = process_image(image_array)
-                
+
                 # Analyze trends
                 trends = analyze_trends(processed_image)
 
             # Display results
             with col2:
                 st.subheader("Analysis Results")
-                
+
                 # Create timeframe analysis table
                 timeframes = ['5 minutes', '10 minutes', '20 minutes', '40 minutes', '1 hour', '1 day']
-                
+
                 # Create plotly figure for trends
                 fig = go.Figure()
-                
+
                 for idx, timeframe in enumerate(timeframes):
                     trend = trends[timeframe]
-                    
+
                     # Add trend line to plot
                     fig.add_trace(go.Scatter(
                         x=[idx, idx + 1],
@@ -62,7 +65,7 @@ def main():
                             width=2
                         )
                     ))
-                
+
                 fig.update_layout(
                     title='Trend Analysis by Timeframe',
                     xaxis_title='Timeframe',
@@ -70,7 +73,7 @@ def main():
                     showlegend=True,
                     height=400
                 )
-                
+
                 st.plotly_chart(fig, use_container_width=True)
 
                 # Display recommendations
@@ -79,7 +82,7 @@ def main():
                     confidence = trend['confidence']
                     direction = trend['direction']
                     recommendation = "BUY" if direction == "up" else "SELL"
-                    
+
                     color = "green" if direction == "up" else "red"
                     st.markdown(f"""
                     <div style='padding: 10px; border-radius: 5px; background-color: rgba({color}, 0.1)'>
