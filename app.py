@@ -8,13 +8,16 @@ from utils.trend_analyzer import analyze_trends
 
 def main():
     st.set_page_config(
-        page_title="Crypto Trend Analyzer",
+        page_title="Sewra Crypto Analyser",
         page_icon="📈",
-        layout="wide"
+        layout="wide",
+        menu_items={
+            'About': "This tool is created by a technical trader. WARNING: Trading cryptocurrencies involves significant risk. This analysis tool could make mistakes - do not depend solely on it for trading decisions. You could lose your money. Always do your own research and trade responsibly."
+        }
     )
 
     # Add creator credit with centered styling
-    st.markdown("<h3 style='text-align: center; color: #FF4B4B;'>Created by SBKD</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #FF4B4B;'>Sewra Crypto Analyser</h3>", unsafe_allow_html=True)
 
     st.title("Cryptocurrency Trend Analyzer 📈")
     st.markdown("""
